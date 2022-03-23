@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-import app from '../app';
+import app from '@s/app';
 
 //var debug = require('debug')('p022-projnotes:server');
 // importamos primero el debug y el la segunda parte se iso el const
@@ -94,5 +94,5 @@ function onListening() {
   const bind = typeof addr === "string" ? `pipe  ${addr}` : ` port $
     {addr.port}`;
 debug(`Listening on  ${bind} `);
-console.log(`Listening on  ${app.get("port")} `);
+console.log(`servidor escuchando  ${app.get("port")} `);
 }
