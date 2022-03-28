@@ -10,7 +10,9 @@ module.exports ={
         //2.1 Ruta bsoluta de la salida
      path: path.resolve(__dirname,'public'),
      //2.2 Nombre del archivo de salida
-     filename: 'javascripts.bundle.js'
+     filename: path.join('javascripts','bundle.js'),
+     //2.3 path publico
+     publicPath: '/',
     },
     
-}
+};
