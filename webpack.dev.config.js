@@ -21,5 +21,33 @@ module.exports ={
         port:8080,
         //
         host: 'localhost'
+    },
+    //4.0 Modulos
+    module: {
+        rules:[
+            //3.1 Regla de babel
+            {
+        test:/\.js$/,
+        exclude: /node_modules/,
+        use:[
+            //3.1.1 primer stage
+            {
+              loader: 'babel-loader',
+              options:{
+                  presets:[
+                      '@babel/preset-env',{
+                          module: false,
+                          useBuiltIns: 'usage',
+                          targets:'> 0.25%, not dead',
+                          corejs:3
+                      }
+                  ]
+              }            
+            }
+        ]
+
+        }   
+    ]
     }
+
 }
