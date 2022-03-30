@@ -35,6 +35,7 @@ module.exports ={
               loader: 'babel-loader',
               options:{
                   presets:[
+                      [
                       '@babel/preset-env',{
                           module: false,
                           useBuiltIns: 'usage',
@@ -42,6 +43,7 @@ module.exports ={
                           corejs:3
                       }
                   ]
+                ]
               }            
             }
         ]

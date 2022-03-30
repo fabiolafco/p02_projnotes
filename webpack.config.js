@@ -2,7 +2,7 @@
 //dependencia del core de Node
 const path = require("path");
 //Plugins para webpack
-const MiniCssExtracPlugin = require
+const MiniCssExtractPlugin = require ("mini-css-extract-plugin");
 
 module.exports ={
     //1. Especificar el archivo de  entrada
@@ -29,13 +29,15 @@ module.exports ={
               loader: 'babel-loader',
               options:{
                   presets:[
+                      [
                       '@babel/preset-env',{
-                          module: false,
+                          modules: false,
                           useBuiltIns: 'usage',
                           targets:'> 0.25%, not dead',
                           corejs:3
                       }
                   ]
+                ]
               }            
             }
         ]
@@ -49,7 +51,7 @@ module.exports ={
     ]
     },
     //4 plugins
-    plugins: [new MiniCssExtracPlugin({
+    plugins: [new MiniCssExtractPlugin({
         filename:path.join('stylesheets','styles.css')
     })]
 };
