@@ -1,3 +1,4 @@
+
 // importando dependencias path
 //dependencia del core de Node
 const path = require("path");
@@ -46,7 +47,7 @@ module.exports ={
         //3.2 Reglas para el Css
         {
             test:/\.css$/,
-            use: [MiniCssExtractPlugin.loader]
+            use: [MiniCssExtractPlugin.loader,'css-loader'],
         }  
     ]
     },

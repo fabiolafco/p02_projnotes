@@ -1,4 +1,10 @@
-console.log("Webpack Working");
+//incorporsndo estilos
+
+import './styles/styles.css';
+import './styles/mystyles.css';
+
+
+console.log("Front-End Working");
 // Default parameters = cuando se tiene una función
 let show = (m ="Hola") => {
     console.log(m);
