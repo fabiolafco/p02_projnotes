@@ -11,7 +11,42 @@ import logger from 'morgan'
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
 
+//importandos modelos de webpack
+import  webpack  from "webpack";
+import  webpackDevMiddleware  from "webpack-dev-middleware";
+import WebpackHotMiddleware from "webpack-hot-middleware";
+import webpackDevConfig from '../webpack.dev.config';
+import webpackConfig from "../webpack.config";
+
 const app = express();
+//recuperar el modo de ejecución
+const NodeEnv =process.env.NodeEnv || 'development';
+//dicidiendo si embemos el webpack middelware
+if (NodeEnv === 'development'){
+  //Embleciendo webpack a mi aplicacion
+  console.log(`Ejecutando en modo desarrollo`);
+  // configurando la ruta del (Hot Module middelware)
+  //reload=true:Habilita la recarga automatico cuando el archivo jscamboa 
+  //timeout=1000 : Tiempo de refresco de pagina
+  webpackDevConfig.entry = ['webpack-hot-middelware/client?reload=true&timeout=1000',
+   webpackConfig.entry
+  ];
+  //agregando el plugin a la configuración de desarrollo
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+  // creando el empaquetador apartir de un objeto de configuración
+  const bundler = webpack(webpackConfig);
+  //habilitando el middelware en express
+  app.use(webpackDevMiddleware(bundler,{
+    publicPath: webpackConfig.output.publicPath}));
+    //Habilitando el middelware del webpack HMR
+    app.use(WebpackHotMiddleware(bundler,{
+      publicPath: webpackConfig.output.publicPath
+    }));
+
+}else{
+  console.log(`Ejecutando en modo produccion`);
+}
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
