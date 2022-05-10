@@ -2,6 +2,9 @@
 // importando dependencias path
 //dependencia del core de Node
 const path = require("path");
+const MiniCssEstractPlugin = requiere ("mini-extract-plugin");
+//Agrgando soporte para eslint
+const eslint
 
 module.exports ={
     //1. Especificar el archivo de  entrada

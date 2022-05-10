@@ -3,13 +3,19 @@ import createError from "http-errors";
 //ayuda a crear servidores web
 import express from 'express';
 import path from 'path';
+//ayuda al manejo de cookis
 import cookieParser from "cookie-parser";
 
-import logger from 'morgan'
-
+//maneja el log de  peticiones
+import morgan from 'morgan';
+//Importando configurador de plantilla
+import templateEngineConfigurador from "./config/templateEngine";
 //las rutas
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
+import aboutRouter from "./routes/users";
+//Importando nuestro logger
+import winston from '@s/config/winston';
 
 //importandos modelos de webpack
 import  webpack  from "webpack";
@@ -46,13 +52,13 @@ if (NodeEnv === 'development'){
 }else{
   console.log(`Ejecutando en modo produccion`);
 }
-
+//configuración de plantillas (template)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+app.use(morgan('dev',{ stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
