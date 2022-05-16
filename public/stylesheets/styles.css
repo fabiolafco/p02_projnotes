@@ -1,33 +1,11 @@
 body{
     padding: 50px;
-    font: "Lucida Grande", Helvetied, sans-serif;}
-    a{
+    font: "Lucida Grande", Helvetica, sans-serif;
+}
+a{
+    color: #00B7FF;
+}
 
-    color: blue;
-    }
-
-    h1{
-
-    
-   
-        color: teal;
-
-    }
-    
-
-body{
-    padding: 50px;
-    font: "Lucida Grande", Helvetied, sans-serif;}
-    a{
-
-    color:purple;
-    }
-
-    h1{
-
-    
-   
-        color: teal;
-
-    }
-    
+h1{
+    color: rgb(139, 0, 65);
+}

@@ -1,10 +1,10 @@
-// Importar Winston
+// Importando Winston
 import winston, { format } from 'winston';
 
 // Se obtiene la ruta a la raiz de proyecto
 import appRoot from 'app-root-path';
 
-// desestructuro componentes para el formato personalizado
+// Desestructuracion componentes para el formato personalizado
 const { combine, timestamp, label, printf, colorize } = format;
 
 // Definiendo un esquema de colores
@@ -24,13 +24,14 @@ const myConsoleFormat = combine(
   // Agregando colores al formato
   colorize({ all: true }),
   // Agregando una etiqueta
-  label({ label: '🎫' }),
+  label({ label: '🕶' }),
   // Agregando la fecha
   timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
-  // Funcion de impresión
+  // Funcion de impresion
   printf(
     (info) =>
-      `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`
+      `${info.level}: ${info.label}: ${[info.timestamp]}:
+         ${info.message}`
   )
 );
 
@@ -44,14 +45,14 @@ const myFileFormat = combine(
   format.json()
 );
 
-// Crear el objeto de opciones (options object)
+// Creando el objeto de opciones(options object)
 const options = {
   infoFile: {
     level: 'info',
     filename: `${appRoot}/server/logs/info.log`,
     handleExceptions: false,
     maxsize: 5242880, // 5MB
-    maxFiles: 5,
+    maxFile: 5,
     format: myFileFormat,
   },
   warnFile: {
@@ -59,7 +60,7 @@ const options = {
     filename: `${appRoot}/server/logs/warn.log`,
     handleExceptions: false,
     maxsize: 5242880, // 5MB
-    maxFiles: 5,
+    maxFile: 5,
     format: myFileFormat,
   },
   errorFile: {
@@ -67,7 +68,7 @@ const options = {
     filename: `${appRoot}/server/logs/error.log`,
     handleExceptions: true,
     maxsize: 5242880, // 5MB
-    maxFiles: 5,
+    maxFile: 5,
     format: myFileFormat,
   },
   console: {
@@ -77,7 +78,7 @@ const options = {
   },
 };
 
-// Creamos una instancia del logger
+// Crearemos una instancia del logger
 const logger = winston.createLogger({
   transports: [
     new winston.transports.File(options.infoFile),

@@ -1,27 +1,29 @@
-//incorporsndo estilos
+/* eslint-disable no-console */
 
-import './styles/styles.css';
-import './styles/mystyles.css';
+// Incorporando estilos a mi bundle
+import './styles/mystyle.css';
 
+console.log('🎁Front-End Working!!!');
 
-console.log("Front-End Working");
-// Default parameters = cuando se tiene una función
-let show = (m ="Hola") => {
-    console.log(m);
+// Default parameters
+const show = (m = '😝') => {
+  console.log(m);
 };
 show();
 
-// promises
-function resolveAffter2Seconds(){
-    return new Promise(resolve => {
-        setTimeout(()=> {
-            resolve('function resolve')
-        },2000)
-    });
+// Promises
+function resolveAfter2Seconds() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('function resolve');
+    }, 10000);
+  });
 }
-async function asyncCall(){
-    console.log("Calling asyn function!!");
-    const result = await resolveAffter2Seconds();
-    console.log(result);//imprime funcion resolve en la consola
+
+async function asyncCall() {
+  console.log('Calling async function!!!');
+  const result = await resolveAfter2Seconds();
+  console.log(result); // Imprime "function resolve" en la consola
 }
+
 asyncCall();
