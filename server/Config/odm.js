@@ -1,25 +1,32 @@
-// 1 Importando odm
-import mongoose from "mongoose";
-// 2 Importando looger
-import winston from "./winston";
+// 1 Importando el ODM
+import mongoose from 'mongoose';
+// 2 Importando el logger
+import winston from './winston';
 
-class mongooseODM{
-    //metodo especial constructor
-    constructor (url) {
-        // crear la propiedad
-        this.url = url;
+class MongooseODM {
+  // Metodo especial constructor
+  constructor(url) {
+    // Crear la propiedad
+    this.url = url;
+  }
 
+  // Methods
+  async connect() {
+    try {
+      // Agregar el sistema de promesas de ES6
+      mongoose.Promise = global.Promise;
+      // Registramos el intento de conexion a la base de datos
+      winston.info(`☢ Conectando a la base de datos: ${this.url}`);
+      // Intento de conexión
+      const connection = await mongoose.connect(this.url);
+      return connection;
+    } catch (error) {
+      // La conexion falla
+      winston.error(
+        `🥀 No se pudo realizar la conexion debido a: ${error.message}`
+      );
+      return false;
     }
-    //methodos
-    async connect(){
-        try{
-           // agregando librerias globale
-           mongoose.Promise = global.Promise
-           winston.info(`Conectado ala base de datos ${this.url}`) 
-           const connection = await mongoose.connect()
-
-        } catch(error){
-            
-        }
-    }
+  }
 }
+export default MongooseODM;
