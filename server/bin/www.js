@@ -12,6 +12,8 @@ import http from 'http';
 
 // importando nuestro logger
 import winston from '../Config/winston';
+// IMportando el objeto de las llaves de configuracion
+import configKeys from '../config/configKeys';
 
 // Creando instancia del debugger
 const debug = Debug('projnotes:server');

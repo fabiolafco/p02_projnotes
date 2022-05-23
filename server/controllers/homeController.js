@@ -13,13 +13,14 @@ const index = (req, res) => {
     '💨',
     '💫',
     '🕳',
+    
   ];
   const emojie =
     emojieDataset[Math.floor(Math.random() * emojieDataset.length)];
   // View-Models
   const viewModel = {
     title: 'Index Controller Working!!!',
-    author: 'Diana Laura Paredes Tinoco',
+    author: 'Fabiola francisco Olmos',
     emojie,
   };
   res.render('home/indexView', viewModel);
@@ -28,8 +29,8 @@ const index = (req, res) => {
 // URL: Get /about
 const about = (req, res) => {
   res.render('home/aboutView', {
-    name: 'Diana Laura',
-    email: 'dtinoco152@gmail.com',
+    name: 'Fabiola Francisco',
+    email: 'fabiola@gmail.com',
     url: 'https:',
   });
 };
