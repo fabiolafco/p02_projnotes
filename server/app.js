@@ -79,9 +79,25 @@ if (nodeEnv === 'development') {
   //creando una instancia a la conexion
   const mongooseODM = new mongooseODM(configkeys.databaseUrl);
   //ejecutar la conexion a la base de datos
-  
+  await mongooseODM.connect();
 
+  //crear una IIFE para crear un entorno asincrono
+  //que me permitira usar asynk
+  (async () =>{
+    //ejecutamos el metodo de ejecucion
+    const connectionResult = await mongooseODM.connect();
+    //Checamos si hay error
+    if (connectionResult){
+      //SI conecto correctamente a la base de datos
+      winston.info('✔ conexion exitosa ala BD');
+
+    }
+    else{
+      winston.error('😢 no se conecto ala base de datos');
+    }
+  }
 }
+  
 // Configuración del motor de plantillas ( template Engine)
 // view engine setup
 templateEngineConfigurator(app);
