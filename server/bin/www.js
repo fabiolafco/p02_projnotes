@@ -23,6 +23,7 @@ const debug = Debug('projnotes:server');
  */
 /** process.env.PORT Forma de acceder a la variable de entorno */
 const port = normalizePort(process.env.PORT || '3000');
+
 // app es una instancia de ExpressJs[ ] [ NODE ]
 app.set('port', port);
 

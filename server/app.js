@@ -29,6 +29,11 @@ import winston from './Config/winston';
 // Permite la actualización dinamica de la página
 // Configuración
 import webpackConfig from '../webpack.dev.config';
+//importando las variables de configuracion
+import configkeys from './config/configKeys';
+
+//importando clase conectora de la base de daros
+import mongooseODM from './config/odm'
 
 // Aqui se crea la instancia de express
 // (req, res, next, err) => {... }
@@ -70,6 +75,12 @@ if (nodeEnv === 'development') {
   app.use(WebpackHotMiddleware(bundler));
 } else {
   console.log(`✍ Ejecutando en modo producción ⚙⚙`);
+  //conexion ala base ded datos
+  //creando una instancia a la conexion
+  const mongooseODM = new mongooseODM(configkeys.databaseUrl);
+  //ejecutar la conexion a la base de datos
+  
+
 }
 // Configuración del motor de plantillas ( template Engine)
 // view engine setup
